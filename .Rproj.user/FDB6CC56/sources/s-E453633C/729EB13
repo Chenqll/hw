@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1663727870901.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "729EB13",
+    "lastKnownWriteTime" : 1663748221,
+    "last_content_update" : 1663748221430,
+    "path" : "~/SB_day1/QiaoLingChen_Assignment3.R",
+    "project_path" : "QiaoLingChen_Assignment3.R",
+    "properties" : {
+        "cursorPosition" : "22,19",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

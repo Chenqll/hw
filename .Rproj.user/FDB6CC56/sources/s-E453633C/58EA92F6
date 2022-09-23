@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1663637406089.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "58EA92F6",
+    "lastKnownWriteTime" : 1663723324,
+    "last_content_update" : 1663723324343,
+    "path" : "~/SB_day1/day2.r",
+    "project_path" : "day2.r",
+    "properties" : {
+        "cursorPosition" : "174,0",
+        "scrollLine" : "161",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

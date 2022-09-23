@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1663660855637.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "5CC96D2F",
+    "lastKnownWriteTime" : 1663749010,
+    "last_content_update" : 1663749026573,
+    "path" : "~/SB_day1/Day2Lab_QiaoLingChen.R",
+    "project_path" : "Day2Lab_QiaoLingChen.R",
+    "properties" : {
+        "cursorPosition" : "4,4",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

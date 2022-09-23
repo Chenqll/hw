@@ -1,0 +1,375 @@
+#### SB Day-1 Introduction to R (Data Frames)
+
+# uncomment run the code below only 
+# if you do not have 'pacman' installed
+# install.packages('pacman', repos = "http://cran.us.r-project.org")
+
+# using this we load the libraries (it installs the ones we do not have in our system)
+pacman::p_load(tidyverse, FRACTION, lubridate)
+
+
+## data frame
+df = iris
+select(df, ends_with('length'))
+
+df2 = starwars
+colnames(df2) 
+select(df2, homeworld, height, mass)
+
+
+
+##### simulate a data frame
+# 
+# set.seed(100)
+
+# create student ids
+student_id = 101:105
+
+#randomly generate age values
+age = sample(15:20, replace = TRUE, size = 5)
+
+#randomly generate gender values
+gender = sample(c("M","F"), 5, replace=TRUE)
+
+# putting all values together in a dataframe
+class_data = data.frame(student_id, gender, age)
+
+# structure of my data
+str(class_data)
+
+
+nrow(class_data)
+dim(class_data)
+
+# look into the first few records 
+head(class_data, 3)
+
+tail(class_data,2)
+
+
+
+
+##### Type & Properties
+is.data.frame(class_data)
+
+class(class_data)
+
+class_data$student_id
+
+class(class_data$student_id)
+
+table() # function in base R
+# use table to count the number of males and females 
+# in class_data
+table(class_data$gender)
+table(class_data$age)
+table(class_data$gender, class_data$age)
+
+# access records for student 103 and 105
+
+class_data[c(3,5), ]
+
+str(class_data)
+summary()# function in base R
+summary(class_data)
+
+
+# all column names
+colnames(class_data)
+
+names(class_data)
+
+# dataframe also has rows with names
+rownames(class_data)
+
+# what is the data type of row names?
+typeof(rownames(class_data))
+
+# attributes
+attributes(student_id)
+attributes(class_data)
+
+
+# adding more data
+
+# how to add a column named 'discount' to the data frame
+# if id is even number then 10% discount
+# else 5% discount
+# how to create a new column
+class_data$discount = 0
+
+class_data$student_id %%2 ==0
+# ifelse(condition, action_if_condition_is_T, action_otherwise)
+class_data$discount = ifelse(class_data$student_id %%2 ==0,
+                             0.1, 0.05)
+
+# delete the column discount
+class_data$discount = NULL
+
+
+### Data Access: Using Index
+
+class_data[1,]# first row is extracted out
+typeof(class_data[1,])
+
+
+
+class_data[,1]
+typeof(class_data[,1])
+
+class_data[,1, drop=FALSE] 
+
+class(class_data[,1, drop=FALSE] )
+# drop = F to return a data frame
+
+class_data[1:2, 2:3] # Access specific data
+
+#### Using Names
+# access column by name ?
+class_data$gender
+class_data['gender']
+
+# access column gender and student_id ?
+class_data[c('gender', 'student_id')]
+class_data$age
+
+class_data['age']
+
+class(class_data['age'])
+typeof(class_data['age'])
+
+
+class_data[ , c('student_id', 'age')]
+
+class_data[c('1', '3'), c('student_id', 'age')]
+
+class_data = data.frame(student_id, gender, age)
+
+table(class_data$gender, class_data$age)
+
+str(class_data)
+
+##### Modify 
+## 1. Change a value
+## 2. Add row or column
+## 3. Merge 2 data frames <br/> 4. Split data frame 5. Delete</p>
+
+class_data[c(1,5),"age"] = 19
+class_data
+
+# Add a row
+new_student = list(106, 'F', 18)# randomly created input
+class_data = rbind(class_data, new_student)
+class_data
+
+# Add a column; call it 'height'
+h = sample(150:180, replace = TRUE, size = 6)
+
+class_data$height = h # can also use cbind()
+class_data
+
+# create a new column 'is_tall'
+# it is 'Yes' if student is taller than 
+# average value of class height
+# otherwise 'No'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+avg_height = mean(class_data$height)
+
+class_data$is_tall = ifelse(class_data$height > avg_height,
+                            'Y', 'N')
+
+# count all the Y and N for is_tall
+table(class_data$is_tall)
+
+# how many M, F are there for each Y, N (in is_tall)
+
+table(class_data$is_tall, class_data$gender)
+
+
+
+
+
+
+
+# remove h from the dataframe
+names(class_data)
+class_data$h = NULL
+
+
+##### Using a condition to modify
+## 10 % discount to all younger than equal to
+#   16 yrs else flat 5%
+
+
+class_data$discount = ifelse(class_data$age <= 16, 
+                             0.10, 
+                             0.05)
+class_data
+
+
+
+
+
+
+
+
+
+#### Merge
+
+class_additional_info = data.frame(id = 101:106, 
+                        nationality = sample(c("Asian",
+                         "European", "Japanese"), 
+                          size = 6, 
+                          replace=TRUE),
+                          stringsAsFactors = F)
+class_additional_info
+
+# merge addtional info. with class_data
+class_modified = merge(class_data, 
+                       class_additional_info, 
+                       by.x ="student_id", by.y = 'id')
+
+class_modified
+
+#### Split
+
+# split based on a column
+(class_split = split(class_modified, 
+                     class_modified$gender))
+
+#### Delete
+
+# row
+class_modified[-1,]
+
+# column
+class_data$height = NULL
+names(class_data)
+
+
+
+
+###########END#################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# class activity
+set.seed(100)
+# create student ids
+student_id = 101:106
+
+#randomly generate age values
+age = sample(15:20, replace = TRUE, size = 6)
+
+#randomly generate gender values
+gender = sample(c("M","F"), 6, replace=TRUE)
+# Add a column; call it 'height'
+height = sample(150:180, replace = TRUE, size = 6)
+# nationality
+nationality = sample(c("Asian","European", "Japanese"), 
+                     size = 6, replace=TRUE)
+# putting all values together in a dataframe
+df_class = data.frame(student_id, gender, age, height, nationality)
+
+lvl = function(age){
+if(age < 17) {
+  return('A')
+} else if(age >= 17 & age <= 18){
+  return('B')
+} else return( 'C')
+ }
+
+
+# read data from file
+# airline_delay_causes_data.csv
+
+delays = read.csv('airline_delay_causes_data.csv',
+                  na.strings = c(999999, "-", " ", "."))# NA
+
+# store the data frame into a new csv
+write.csv(delays, 'process_delays.csv', row.names = F)
+
+
+str(class_data)
+
+class_data$gender = as.factor(class_data$gender)
+summary(class_data)
+levels(class_data$gender)
+
+
+class_data$gender = factor(class_data$gender, levels = c('M', 'F'))
+levels(class_data$gender)
+
+
+##
+df = iris
+
+sapply(iris, class)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
